@@ -12,6 +12,10 @@ CREATE TABLE species(
     discovery_date DATE,
     conservation_status CHAR(10)
 );
+
+DELETE FROM species ;
+
+
 CREATE TABLE sightings(
     sighting_id SERIAL PRIMARY KEY,
     ranger_id INTEGER REFERENCES rangers(ranger_id) ON DELETE CASCADE,
@@ -27,7 +31,7 @@ VALUES ('Alice Green', 'Northern Hills'),
   ('Carol King', 'Mountain Range');
 
 SELECT * from rangers;
-  INSERT INTO species (common_name, scientific_name, discovery_date, conservation_status)
+  INSERT INTO species_2 (common_name, scientific_name, discovery_date, conservation_status)
 VALUES
   ('Snow Leopard', 'Panthera uncia', '1775-01-01', 'Endangered'),
   ('Bengal Tiger', 'Panthera tigris tigris', '1758-01-01', 'Endangered'),
@@ -65,11 +69,30 @@ WHERE "location" LIKE '%Pass%';
 
 SELECT name, count(species_id ) FROM rangers JOIN sightings GROUP BY ranger_id;
 
-SELECT count( s.species_id) from rangers r JOIN sightings s 
+SELECT (SELECT name FROM rangers ), count( s.species_id) from rangers r JOIN sightings s 
 ON r.ranger_id = s.ranger_id GROUP BY s.ranger_id;
 
+
+
+SELECT r.name, r.ranger_id FROM rangers r JOIN sightings s USING(ranger_id) GROUP BY s.ranger_id;
 
 -- 5 List species that have never been sighted.
 
 SELECT common_name FROM species 
 WHERE species_id NOT IN (SELECT species_id  from sightings );
+
+-- 6 Show the most recent 2 sightings.
+SELECT sp.common_name, s.sighting_time, r.name  FROM sightings s 
+JOIN species sp ON s.species_id =sp.species_id  
+JOIN rangers r on r.ranger_id = s.ranger_id
+ORDER BY sighting_time DESC LIMIT 2;
+
+
+-- 7  Update all species discovered before year 1800 to have status 'Historic'.
+
+UPDATE species
+set conservation_status = 'Historic' 
+WHERE EXTRACT (YEAR FROM discovery_date)< 1800;
+
+
+
