@@ -1,4 +1,17 @@
-What is PostgreSQL?
+### What is PostgreSQL?
+-------------------------------
+PostgreSql হলো একটি database management system যাকে object-relational  
+database management system (RDBMS) ও বলা হয়| 
+
+PostgreSql Open source platform অর্থাৎ এটা সম্পূর্ণ free এবং যে কেউ এটাকে customize 
+এবং share করতে পারে| 
+
+এটি SQL এর সমস্ত feature যেমন join, subquery, Aggregate Function ইত্যাদি ব্যবহার করে
+ data management করা যায়| এটি pl/pgSql, pyhon, javascript  বিভিন্ন language support করে|
+PostgreSql rlational database এর পাশাপাশি Nosql data (json) ও  support করে| 
+
+বিভিন্ন ধরনের web-application এবং mobile application তৈরীর কাজে ব্যবহার করা হয়|
+
 What is the purpose of a database schema in PostgreSQL?
 Explain the Primary Key and Foreign Key concepts in PostgreSQL.
 What is the difference between the VARCHAR and CHAR data types?
