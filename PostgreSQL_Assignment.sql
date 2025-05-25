@@ -4,6 +4,7 @@ CREATE TABLE rangers (
     region VARCHAR(50)
 );
 
+drop table rangers;
 
 CREATE TABLE species(
     species_id SERIAL PRIMARY KEY,
@@ -67,14 +68,7 @@ WHERE "location" LIKE '%Pass%';
 
 --4 List each ranger's name and their total number of sightings.   ------------------------
 
-SELECT name, count(species_id ) FROM rangers JOIN sightings GROUP BY ranger_id;
-
-SELECT (SELECT name FROM rangers ), count( s.species_id) from rangers r JOIN sightings s 
-ON r.ranger_id = s.ranger_id GROUP BY s.ranger_id;
-
-
-
-SELECT r.name, r.ranger_id FROM rangers r JOIN sightings s USING(ranger_id) GROUP BY s.ranger_id;
+SELECT r.name, count(s.sighting_id) FROM rangers r JOIN sightings s ON r.ranger_id = s.ranger_id GROUP BY r.name;
 
 -- 5 List species that have never been sighted.
 
@@ -95,4 +89,19 @@ set conservation_status = 'Historic'
 WHERE EXTRACT (YEAR FROM discovery_date)< 1800;
 
 
+-- 8 Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
+SELECT sighting_id, 
+CASE 
+    WHEN EXTRACT(HOUR FROM sighting_time)<12 THEN 'Morning'
+    WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+    WHEN EXTRACT(HOUR FROM sighting_time)>17 THEN 'Evening'
+END as time_of_day 
+FROM sightings;
 
+-- 9 Delete rangers who have never sighted any species
+
+DELETE FROM rangers WHERE ranger_id NOT IN (SELECT ranger_id FROM sightings );
+
+INSERT into rangers (name, region)VALUES('Carol King', 'Mountain Range')
+
+SELECT * from rangers;
