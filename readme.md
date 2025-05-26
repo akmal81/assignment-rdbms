@@ -13,6 +13,7 @@ PostgreSql rlational database এর পাশাপাশি Nosql data (json) 
 বিভিন্ন ধরনের web-application এবং mobile application তৈরীর কাজে ব্যবহার করা হয়|
 
 ### 2. What is the purpose of a database schema in PostgreSQL?
+-------------------------------
 
 Database schema কে আমরা গ্রুপ হিসেবে কল্পনা করতে পারি| যেখানে একটি database 
 মধ্যে থাকা বিভিন্ন অবজেক্ট যেমন table, view,  function ইত্যাদি কে গ্রুপ  করে রাখতে পারি|
@@ -29,6 +30,7 @@ schema database maintenance  সহজ করে|
 
 
 ### 3. Explain the Primary Key and Foreign Key concepts in PostgreSQL.
+-------------------------------
 
 ###### Primary Key:
 Primary Key একটি constraint| 
@@ -60,6 +62,7 @@ CREATE TABLE enrollments (
 
 
 ### 4. What is the difference between the VARCHAR and CHAR data types?
+-------------------------------
 
 ###### VARCHAR Vs CHAR:
 VARCHAR পরিবর্তনশীল দৈর্ঘ্যের data type. 
@@ -85,6 +88,7 @@ CHAR দিয়ে যদি name declear করা হয় তাহলে 
 
 
 ### 5. Explain the purpose of the WHERE clause in a SELECT statement.
+-------------------------------
 
 কোন একটি SQL query যদি শর্তসাপেক্ষে execute করাতে হয় তাহলে আমরা WHERE ব্যবহার করে থাকি|
 
