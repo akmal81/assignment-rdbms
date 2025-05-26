@@ -40,11 +40,12 @@ Primary Key একটি table এর প্রত্যেকটি data  ব�
 প্রাইমারি কি নাল হতে পারে না|
 
 Example: 
+```
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100),
   age INT
-);
+);```
 Students table এর primary key হলো id.
 
 ###### Foreign Key:
